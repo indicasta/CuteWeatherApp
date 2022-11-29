@@ -1,0 +1,60 @@
+.text-properties,
+.temperature,
+.units {
+  background-image: linear-gradient(60deg, #f13863, #f9a826);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Sono", sans-serif;
+}
+h1.text-properties {
+  font-family: "Dancing Script";
+  font-size: 75px;
+  font-weight: 700;
+}
+#day {
+  font-size: 48px;
+}
+#date {
+  font-size: 30px;
+}
+#current-weather {
+  /* border-color: #f13863 !important; */
+  border-radius: 10px !important;
+  border-width: 5px !important;
+  border-style: solid !important;
+  background-image: linear-gradient(60deg, #f13863, #f9a826) !important;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  color: #000;
+  font-weight: 900;
+}
+.temperature {
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 1;
+}
+.units {
+  position: relative;
+  top: -34px;
+  font-size: 30px;
+}
+#unit {
+  background-color: transparent;
+  border: none;
+  font-weight: 700;
+}
+.text-properties p i {
+  background-image: linear-gradient(75deg, hsl(203, 85%, 63%), #153ce8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 56px;
+}
+.btn-group button {
+  border: 5px solid transparent;
+}
+.btn-group button:hover {
+  border: 5px solid #f9a826;
+  border-radius: 15px !important;
+}
