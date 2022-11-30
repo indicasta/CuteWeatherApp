@@ -13,10 +13,10 @@ h1.text-properties {
   font-weight: 700;
 }
 #day {
-  font-size: 25px;
+  font-size: 45px;
 }
 #date {
-  font-size: 25px;
+  font-size: 35px;
 }
 #current-weather {
   /* border-color: #f13863 !important; */
