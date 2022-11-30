@@ -31,7 +31,7 @@
   </head>
   <body>
     <div class="container">
-      <div class="row card text-bg-dark">
+      <div class="row card text-bg-dark" style="max-width: 1024px">
         <img
           src="img/sun-hands.svg"
           class="card-img opacity-75"
@@ -56,9 +56,9 @@
           <button type="button" class="btn btn-dark mt-3" id="current-weather">
             Current Weather
           </button>
-          <div class="col-md-10 col-xs-9">
+          <div class="col-md-6 col-xs-9">
             <h1
-              class="selected-city card-title position-absolute top-0 end-0 me-4 px-2 mt-3 text-properties"
+              class="selected-city card-title position-absolute top-50 end-50 me-4 px-2 mt-3 text-properties"
             >
               Barcelona
             </h1>
@@ -66,14 +66,18 @@
         </div>
         <div class="row">
           <div
-            class="col-md-4 col-xs-6 card text-bg-dark opacity-75 mb-1 position-absolute top-50 end-0 translate-middle-y rounded-pill"
-            style="max-width: 384px"
+            class="col-md-6 col-xs-10 card text-bg-dark opacity-75 mb-1 position-absolute top-50 end-0 translate-middle-y rounded-pill"
+            style="max-width: 320px"
           >
             <div class="card-body text-start text-properties">
               <div class="text-center">
                 <h4 id="day" class="text-properties"></h4>
                 <h4 id="date" class="text-properties"></h4>
-                <h5 id="time" class="text-properties"></h5>
+                <span
+                  ><h4>Last Updated:</h4>
+                  <h4 id="time" class="text-properties"></h4
+                ></span>
+
                 <br />
               </div>
 
@@ -99,6 +103,14 @@
             </div>
           </div>
         </div>
+        <footer class="text-center">
+          <a
+            class="text-properties"
+            href="https://github.com/indicasta/CuteWeatherApp"
+            >Open-Source</a
+          >
+          Coded by IndiCasta🧿
+        </footer>
       </div>
     </div>
   </body>
