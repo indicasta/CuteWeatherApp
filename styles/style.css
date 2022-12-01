@@ -1,3 +1,8 @@
+.wrapper {
+  max-width: 600px;
+  margin: 30px auto;
+  border: 1px solid #f13863;
+}
 .text-properties,
 .temperature,
 .units {
@@ -9,17 +14,28 @@
 }
 h1.text-properties {
   font-family: "Dancing Script";
-  font-size: 100px;
+  font-size: 40px;
   font-weight: 700;
+  line-height: 50px;
+  display: block;
+}
+.text-properties p {
+  font-size: 12px;
+  line-height: 19px;
+}
+.text-properties h4 {
+  font-size: 14px;
+}
+.text-properties h5 {
+  font-size: 12px;
 }
 #day {
-  font-size: 35px;
-}
-#date {
   font-size: 24px;
 }
+#date {
+  font-size: 18px;
+}
 #current-weather {
-  /* border-color: #f13863 !important; */
   border-radius: 10px !important;
   border-width: 5px !important;
   border-style: solid !important;
@@ -30,14 +46,14 @@ h1.text-properties {
   font-weight: 900;
 }
 .temperature {
-  font-size: 60px;
+  font-size: 40px;
   font-weight: 400;
   line-height: 1;
 }
 .units {
   position: relative;
-  top: -34px;
-  font-size: 30px;
+  top: -24px;
+  font-size: 20px;
 }
 #unit {
   background-color: transparent;
@@ -49,7 +65,7 @@ h1.text-properties {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: 48px;
+  font-size: 22px;
 }
 .btn-group button {
   border: 5px solid transparent;
