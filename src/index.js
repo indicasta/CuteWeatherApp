@@ -8,7 +8,7 @@ let writtenCity,
   wind;
 
 // let $ = window.jQuery;
-let apiKey = "c8735bb7e8e2f8d8a38c7501f3cd47d3";
+let apiKey = "2a2eaa51d996796495bf456e5b58adf4";
 let lat, lon;
 let exclude = "minutely,hourly,daily";
 let apiUrl;
