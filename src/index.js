@@ -104,7 +104,7 @@ function showWeatherSelectedCity(response) {
   updateWeatherConditions(response.data.weather);
   document.getElementById(
     "humidity"
-  ).innerHTML = `<i class="fa-solid fa-droplet"></i> HUMIDITY: ${hum}%`;
+  ).innerHTML = `<i class="fa-solid fa-droplet"></i> HUM: ${hum}%`;
   feelLikes2Transform = tempfeelsLike;
   document.querySelector("span.temperature").innerHTML = temp2Display;
   let unit = "°C";
@@ -115,7 +115,7 @@ function showWeatherSelectedCity(response) {
   }
   document.getElementById(
     "feelsLike"
-  ).innerHTML = `<i class="fa-solid fa-temperature-low"></i>FEELS LIKE: ${tempfeelsLike2Display}${unit}`;
+  ).innerHTML = `<i class="fa-solid fa-temperature-low"></i>FEELS LIKE:${tempfeelsLike2Display}${unit}`;
   document.getElementById(
     "wind"
   ).innerHTML = `<i class="fa-solid fa-wind"> </i> WIND: ${Math.round(
@@ -127,12 +127,12 @@ function showWeatherSelectedCity(response) {
     document.getElementById(
       "precipitation"
     ).innerHTML = `<i class="fa-solid fa-cloud-showers-heavy"></i>
-                PRECIPITATION: ${Object.values(rain)[0]} mm`;
+                RAIN: ${Object.values(rain)[0]} mm`;
   } else {
     document.getElementById(
       "precipitation"
     ).innerHTML = `<i class="fa-solid fa-cloud-showers-heavy"></i>
-                PRECIPITATION: 0%`;
+                RAIN: 0%`;
   }
   writtenCity2Display = response.data.name;
   document.querySelector("h1").innerHTML = writtenCity2Display;
@@ -162,7 +162,7 @@ function updateTempWind(transformation2do) {
     document.getElementById("unit").innerHTML = "°C";
     document.getElementById(
       "feelsLike"
-    ).innerHTML = `<i class="fa-solid fa-temperature-low"></i>FEELS LIKE: ${feelLikes2Transform}°F`;
+    ).innerHTML = `<i class="fa-solid fa-temperature-low"></i>FEELS LIKE:${feelLikes2Transform}°F`;
   } else {
     wind = mph2mps(wind);
     unitVelocity = "m/s";
@@ -173,7 +173,7 @@ function updateTempWind(transformation2do) {
     document.getElementById("unit").innerHTML = "°F";
     document.getElementById(
       "feelsLike"
-    ).innerHTML = `<i class="fa-solid fa-temperature-low"></i>FEELS LIKE: ${feelLikes2Transform}°C`;
+    ).innerHTML = `<i class="fa-solid fa-temperature-low"></i>FEELS LIKE:${feelLikes2Transform}°C`;
   }
   document.getElementById(
     "wind"

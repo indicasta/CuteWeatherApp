@@ -38,27 +38,38 @@
           alt="weather Forecast"
         />
         <div class="card-img-overlay">
-          <div class="col-4 opacity-25">
-            <input
-              type="text"
-              class="form-control"
-              id="city"
-              onkeypress="return isAlphaKey(event)"
-              name="city"
-              autocomplete="off"
-              autofocus="on"
-              role="form"
-              placeholder="Search for Location"
-              value=""
-              required
-            />
+          <div class="row align-items-start">
+            <div class="col-4 opacity-25">
+              <input
+                type="text"
+                class="form-control"
+                id="city"
+                onkeypress="return isAlphaKey(event)"
+                name="city"
+                autocomplete="off"
+                autofocus="on"
+                role="form"
+                placeholder="Search for Location"
+                value=""
+                required
+              />
+            </div>
+            <div class="col-2">
+              <button
+                type="button"
+                class="btn btn-dark"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-title="Current Location"
+                id="current-weather"
+              >
+                📍
+              </button>
+            </div>
           </div>
-          <button type="button" class="btn btn-dark mt-3" id="current-weather">
-            Current 📍
-          </button>
           <div class="col-4">
             <h1
-              class="selected-city card-title position-absolute top-50 end-50 ms-4 px-2 mt-3 text-properties"
+              class="selected-city card-title position-absolute text-start top-0 end-0 px-5 my-2 text-properties"
             >
               Barcelona
             </h1>
@@ -66,8 +77,8 @@
         </div>
         <div class="row">
           <div
-            class="col-8 position-absolute top-50 end-0 my-2 translate-middle-y"
-            style="max-width: 260px"
+            class="col-10 position-absolute top-50 end-0 my-4 translate-middle-y"
+            style="max-width: 320px"
           >
             <div class="card-body text-start text-properties">
               <div class="text-center">
@@ -77,26 +88,32 @@
                 <h5 id="time" class="text-properties"></h5>
                 <br />
               </div>
-
-              <p class="card-text fw-bold">
-                <i class="fa-solid fa-temperature-three-quarters"></i>
-                <span class="temperature">16</span><span class="units">°C|</span
-                ><button class="units" id="unit">°F</button>
-              </p>
-              <p id="condition" class="fw-bold"></p>
-              <p class="fw-bold feelsLike" id="feelsLike">
-                <i class="fa-solid fa-temperature-low"></i>FEELS LIKE: 16°C
-              </p>
-              <p id="humidity" class="fw-bold">
-                <i class="fa-solid fa-droplet"></i> HUMIDITY: 94%
-              </p>
-              <p id="wind" class="fw-bold">
-                <i class="fa-solid fa-wind"> </i> WIND: 5 m/s
-              </p>
-              <p id="precipitation" class="fw-bold">
-                <i class="fa-solid fa-cloud-showers-heavy"></i>
-                PRECIPITATION: 0%
-              </p>
+              <div class="text-center">
+                <p class="card-text fw-bold">
+                  <i class="fa-solid fa-temperature-three-quarters"></i>
+                  <span class="temperature">16</span
+                  ><span class="units">°C|</span
+                  ><button class="units" id="unit">°F</button>
+                </p>
+                <p id="condition" class="fw-bold"></p>
+              </div>
+              <div class="row justify-content-around">
+                <p class="fw-bold feelsLike col-7" id="feelsLike">
+                  <i class="fa-solid fa-temperature-low"></i>FEELS LIKE:16°C
+                </p>
+                <p id="humidity" class="fw-bold col-5">
+                  <i class="fa-solid fa-droplet"></i> HUM: 94%
+                </p>
+              </div>
+              <div class="row justify-content-around">
+                <p id="wind" class="fw-bold col-6">
+                  <i class="fa-solid fa-wind"> </i> WIND: 5 m/s
+                </p>
+                <p id="precipitation" class="fw-bold col-6">
+                  <i class="fa-solid fa-cloud-showers-heavy"></i>
+                  RAIN: 0%
+                </p>
+              </div>
             </div>
           </div>
         </div>
