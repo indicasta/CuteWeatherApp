@@ -104,7 +104,7 @@ function showWeatherSelectedCity(response) {
   updateWeatherConditions(response.data.weather);
   document.getElementById(
     "humidity"
-  ).innerHTML = `<i class="fa-solid fa-droplet"></i> HUM: ${hum}%`;
+  ).innerHTML = `<i class="fa-solid fa-droplet"></i> HUM:${hum}%`;
   feelLikes2Transform = tempfeelsLike;
   document.querySelector("span.temperature").innerHTML = temp2Display;
   let unit = "°C";
@@ -118,7 +118,7 @@ function showWeatherSelectedCity(response) {
   ).innerHTML = `<i class="fa-solid fa-temperature-low"></i>FEELS LIKE:${tempfeelsLike2Display}${unit}`;
   document.getElementById(
     "wind"
-  ).innerHTML = `<i class="fa-solid fa-wind"> </i> WIND: ${Math.round(
+  ).innerHTML = `<i class="fa-solid fa-wind"> </i> WIND:${Math.round(
     wind
   )} ${unitVelocity}`;
   console.log(response.data);
@@ -127,7 +127,7 @@ function showWeatherSelectedCity(response) {
     document.getElementById(
       "precipitation"
     ).innerHTML = `<i class="fa-solid fa-cloud-showers-heavy"></i>
-                RAIN: ${Object.values(rain)[0]} mm`;
+                RAIN:${Object.values(rain)[0]} mm`;
   } else {
     document.getElementById(
       "precipitation"
@@ -177,7 +177,7 @@ function updateTempWind(transformation2do) {
   }
   document.getElementById(
     "wind"
-  ).innerHTML = `<i class="fa-solid fa-wind"> </i> WIND: ${wind} ${unitVelocity}`;
+  ).innerHTML = `<i class="fa-solid fa-wind"> </i> WIND:${wind} ${unitVelocity}`;
   temp = newTemp;
   transformation2do = document.querySelector("#unit").innerHTML;
 }
