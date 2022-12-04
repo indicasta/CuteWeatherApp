@@ -132,7 +132,7 @@ function showWeatherSelectedCity(response) {
     document.getElementById(
       "precipitation"
     ).innerHTML = `<i class="fa-solid fa-cloud-showers-heavy"></i>
-                RAIN: 0%`;
+                RAIN:0%`;
   }
   writtenCity2Display = response.data.name;
   document.querySelector("h1").innerHTML = writtenCity2Display;
