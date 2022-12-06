@@ -146,7 +146,14 @@ function updateCity() {
   writtenCity = writtenCity.toLowerCase();
   units = updateUnits();
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${writtenCity}&units=${units}&appid=${apiKey}`;
-  axios.get(apiUrl).then(showWeatherSelectedCity);
+  axios
+    .get(apiUrl)
+    .then(showWeatherSelectedCity)
+    .catch((error) => {
+      if (error.code === "ERR_BAD_REQUEST") {
+        console.error("City not found");
+      }
+    });
 }
 function updateTempWind(transformation2do) {
   let temp2Transform = temp;
