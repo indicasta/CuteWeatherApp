@@ -22,6 +22,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Sono:wght@200;300;400;500;600;700;800&display=swap"
     />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/74f0ec7ef2.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
@@ -53,6 +54,7 @@
                 value=""
                 required
                 title="Complete the City"
+                onclick="onButtonPress()"
               />
             </div>
             <div class="col-2 mt-0">
@@ -66,12 +68,12 @@
               </button>
             </div>
             <div
-              class="alert alert-danger d-flex align-items-center col-6 my-2 py-2"
+              class="alert alert-danger fade in hide d-flex align-items-center col-6 my-2 py-2"
               role="alert"
               style="
                 background-image: linear-gradient(
                   to right,
-                  #e13b0d 0%,
+                  #f13863 0%,
                   #f6d365 33%,
                   #fda085 66%,
                   #1e190a 100%
@@ -88,7 +90,7 @@
               >
                 <use xlink:href="#exclamation-triangle-fill" />
               </svg>
-              <div>Uh-oh! City not found!🙄</div>
+              <div>Uh-oh! City not found!😲</div>
             </div>
           </div>
           <div class="row">

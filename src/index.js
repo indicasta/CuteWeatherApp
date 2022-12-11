@@ -12,6 +12,10 @@ let apiKey = "2a2eaa51d996796495bf456e5b58adf4";
 let lat, lon;
 let exclude = "minutely,hourly,daily";
 let apiUrl;
+function onButtonPress() {
+  document.getElementById("error-notFound").classList.add("hide");
+  document.getElementById("error-notFound").classList.remove("show");
+}
 function celsiustoFahrenheit(degree) {
   return Math.round((degree * 9) / 5 + 32);
 }
@@ -151,9 +155,13 @@ function updateCity() {
     .then(showWeatherSelectedCity)
     .catch((error) => {
       if (error.code === "ERR_BAD_REQUEST") {
-        console.error("City not found");
+        document.getElementById("error-notFound").classList.add("show");
+        document.getElementById("error-notFound").classList.remove("hide");
+        return;
       }
     });
+  document.getElementById("error-notFound").classList.add("hide");
+  document.getElementById("error-notFound").classList.remove("show");
 }
 function updateTempWind(transformation2do) {
   let temp2Transform = temp;
@@ -227,7 +235,6 @@ function formatDate(date) {
   };
   return formattedDate;
 }
-
 $(function () {
   let date = new Date();
   let obj = formatDate(date);
