@@ -15,6 +15,7 @@ let apiUrl;
 function onButtonPress() {
   document.getElementById("error-notFound").classList.add("hide");
   document.getElementById("error-notFound").classList.remove("show");
+  document.querySelector("#city").value = "";
 }
 function celsiustoFahrenheit(degree) {
   return Math.round((degree * 9) / 5 + 32);
@@ -38,8 +39,6 @@ function updateUnits() {
 function getCurrentPosition(position) {
   lat = position.coords.latitude;
   lon = position.coords.longitude;
-  console.log(`My current latitude is ${lat}`);
-  console.log(`My current longitude is ${lon}`);
   units = updateUnits();
   let cityFromLocationUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`;
   axios.get(cityFromLocationUrl).then(showWeatherSelectedCity);
@@ -125,8 +124,6 @@ function showWeatherSelectedCity(response) {
   ).innerHTML = `<i class="fa-solid fa-wind"> </i> WIND:${Math.round(
     wind
   )} ${unitVelocity}`;
-  console.log(response.data);
-  console.log(response.data.weather[0].description);
   if (rain !== undefined) {
     document.getElementById(
       "precipitation"
@@ -140,9 +137,6 @@ function showWeatherSelectedCity(response) {
   }
   writtenCity2Display = response.data.name;
   document.querySelector("h1").innerHTML = writtenCity2Display;
-  console.log(
-    `The current temperature in ${writtenCity2Display} is ${temp}${unit}`
-  );
 }
 function updateCity() {
   writtenCity = document.getElementById("city").value;
