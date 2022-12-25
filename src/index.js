@@ -229,6 +229,53 @@ function formatDate(date) {
   };
   return formattedDate;
 }
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastElement2 = document.querySelector("#forecast2");
+  let days_3 = ["Thu", "Fri", "Sat"];
+  let days_6 = ["Sun", "Mon", "Tue"];
+
+  let forecastHTML = `<div class="row">`;
+  days_3.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="col-2">
+        <div class="fw-bold">${day}</div>
+        <i class="fa-solid fa-cloud-bolt"></i>
+        <div class="">
+        
+          <span class="forecast-temp-max"> <i class="fa-solid fa-temperature-arrow-up"></i>18° </span>
+          
+          <span class="forecast-temp-min"> <i class="fa-solid fa-temperature-arrow-down"></i>12°</span>
+        </div>
+      </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>` + `</br>`;
+  forecastElement.innerHTML = forecastHTML;
+  console.log(forecastHTML);
+  let forecastHTML2 = `<div class="row">`;
+  days_6.forEach(function (day) {
+    forecastHTML2 =
+      forecastHTML2 +
+      `
+      <div class="col-2">
+        <div class="fw-bold">${day}</div>
+        <i class="fa-solid fa-cloud-sun-rain"></i>
+        <div class="">
+          <span class="forecast-temp-max"> <i class="fa-solid fa-temperature-arrow-up"></i>18°</span>
+          <span class="forecast-temp-min"><i class="fa-solid fa-temperature-arrow-down"></i>12°</span>
+        </div>
+      </div>
+  `;
+  });
+
+  forecastHTML2 = forecastHTML2 + `</div>`;
+  forecastElement2.innerHTML = forecastHTML2;
+  console.log(forecastHTML2);
+}
 $(function () {
   let date = new Date();
   let obj = formatDate(date);
@@ -250,4 +297,5 @@ $(function () {
       navigator.geolocation.getCurrentPosition(getCurrentPosition);
       document.querySelector("#city").value = "";
     });
+  displayForecast();
 });

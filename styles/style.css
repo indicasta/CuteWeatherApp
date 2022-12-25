@@ -70,7 +70,7 @@ h1.text-properties {
   border: none;
   font-weight: 700;
 }
-.text-properties p i {
+.text-properties i {
   background-image: linear-gradient(75deg, hsl(203, 85%, 63%), #153ce8);
   background-clip: text;
   -webkit-background-clip: text;
@@ -89,4 +89,12 @@ h1.text-properties {
 }
 #precipitation {
   white-space: nowrap;
+}
+.forecast-temp-max {
+  font-size: 14px;
+  font-weight: 500;
+}
+forecast-temp-min {
+  font-size: 10px;
+  font-size: 100;
 }
