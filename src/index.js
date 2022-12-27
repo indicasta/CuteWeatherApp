@@ -194,6 +194,9 @@ function updateTempWind(transformation2do) {
       "feelsLike"
     ).innerHTML = `<i class="fa-solid fa-temperature-low"></i>FEELS LIKE:${feelLikes2Transform}°C`;
   }
+  units = updateUnits();
+  let cityFromLocationUrl2Forecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${units}&exclude=${exclude}&appid=${apiKey}`;
+  axios.get(cityFromLocationUrl2Forecast).then(displayForecast);
   document.getElementById(
     "wind"
   ).innerHTML = `<i class="fa-solid fa-wind"> </i> WIND:${wind} ${unitVelocity}`;
@@ -325,5 +328,4 @@ $(function () {
       navigator.geolocation.getCurrentPosition(getCurrentPosition);
       document.querySelector("#city").value = "";
     });
-  // displayForecast();
 });
