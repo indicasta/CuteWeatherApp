@@ -10,7 +10,7 @@ let writtenCity,
 // let $ = window.jQuery;
 let apiKey = "2a2eaa51d996796495bf456e5b58adf4";
 let lat, lon;
-let exclude = "minutely,hourly,daily";
+let exclude = "minutely,hourly";
 let apiUrl;
 function onButtonPress() {
   document.getElementById("error-notFound").classList.add("hide");
@@ -36,12 +36,21 @@ function updateUnits() {
   }
   return "imperial";
 }
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
 function getCurrentPosition(position) {
   lat = position.coords.latitude;
   lon = position.coords.longitude;
   units = updateUnits();
   let cityFromLocationUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`;
   axios.get(cityFromLocationUrl).then(showWeatherSelectedCity);
+  let cityFromLocationUrl2Forecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${units}&exclude=${exclude}&appid=${apiKey}`;
+  axios.get(cityFromLocationUrl2Forecast).then(displayForecast);
 }
 function updateWeatherConditions(weather) {
   let currentWeather = weather[0];
@@ -93,8 +102,7 @@ function updateWeatherConditions(weather) {
   } else if (currentWeather.id === 803 || currentWeather.id === 804) {
     icon = `<i class="fa-solid fa-cloud"></i>`;
   }
-
-  document.getElementById("condition").innerHTML = icon + " " + description;
+  return { icon: icon, description: description };
 }
 function showWeatherSelectedCity(response) {
   temp = response.data.main.temp;
@@ -104,7 +112,9 @@ function showWeatherSelectedCity(response) {
   let hum = response.data.main.humidity;
   let rain = response.data.rain;
   wind = response.data.wind.speed;
-  updateWeatherConditions(response.data.weather);
+  let weatherCond = updateWeatherConditions(response.data.weather);
+  document.getElementById("condition").innerHTML =
+    weatherCond.icon + " " + weatherCond.description;
   document.getElementById(
     "humidity"
   ).innerHTML = `<i class="fa-solid fa-droplet"></i> HUM:${hum}%`;
@@ -229,52 +239,69 @@ function formatDate(date) {
   };
   return formattedDate;
 }
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastElement2 = document.querySelector("#forecast2");
-  let days_3 = ["Thu", "Fri", "Sat"];
-  let days_6 = ["Sun", "Mon", "Tue"];
-
   let forecastHTML = `<div class="row">`;
-  days_3.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  let forecastHTML2 = `<div class="row">`;
+  let weatherCond;
+  forecast.forEach(function (forecastDay, index) {
+    weatherCond = updateWeatherConditions(forecastDay.weather);
+    if (index >= 1 && index <= 3) {
+      console.log(forecastDay.weather);
+      forecastHTML =
+        forecastHTML +
+        `
       <div class="col-2">
-        <div class="fw-bold">${day}</div>
-        <i class="fa-solid fa-cloud-bolt"></i>
+        <div class="fw-bold" title=${weatherCond.description}>${formatDay(
+          forecastDay.dt
+        )}</div>
+        ${weatherCond.icon}
         <div class="">
         
-          <span class="forecast-temp-max"> <i class="fa-solid fa-temperature-arrow-up"></i>18° </span>
+          <span class="forecast-temp-max"> <i class="fa-solid fa-temperature-arrow-up"></i>${Math.round(
+            forecastDay.temp.max
+          )}° </span>
           
-          <span class="forecast-temp-min"> <i class="fa-solid fa-temperature-arrow-down"></i>12°</span>
+          <span class="forecast-temp-min"> <i class="fa-solid fa-temperature-arrow-down"></i>${Math.round(
+            forecastDay.temp.min
+          )}°</span>
         </div>
       </div>
   `;
+    } else if (3 < index && index < 7) {
+      console.log(forecastDay.weather);
+      forecastHTML2 =
+        forecastHTML2 +
+        `
+      <div class="col-2">
+        <div class="fw-bold" title=${weatherCond.description}>${formatDay(
+          forecastDay.dt
+        )}</div>
+        ${weatherCond.icon}
+        <div class="">
+          <span class="forecast-temp-max"> <i class="fa-solid fa-temperature-arrow-up"></i>${Math.round(
+            forecastDay.temp.max
+          )}°</span>
+          <span class="forecast-temp-min"><i class="fa-solid fa-temperature-arrow-down"></i>${Math.round(
+            forecastDay.temp.min
+          )}°</span>
+        </div>
+      </div>
+  `;
+    }
   });
-
   forecastHTML = forecastHTML + `</div>` + `</br>`;
   forecastElement.innerHTML = forecastHTML;
-  console.log(forecastHTML);
-  let forecastHTML2 = `<div class="row">`;
-  days_6.forEach(function (day) {
-    forecastHTML2 =
-      forecastHTML2 +
-      `
-      <div class="col-2">
-        <div class="fw-bold">${day}</div>
-        <i class="fa-solid fa-cloud-sun-rain"></i>
-        <div class="">
-          <span class="forecast-temp-max"> <i class="fa-solid fa-temperature-arrow-up"></i>18°</span>
-          <span class="forecast-temp-min"><i class="fa-solid fa-temperature-arrow-down"></i>12°</span>
-        </div>
-      </div>
-  `;
-  });
-
   forecastHTML2 = forecastHTML2 + `</div>`;
   forecastElement2.innerHTML = forecastHTML2;
-  console.log(forecastHTML2);
+}
+function getCoords(response) {
+  lat = response.data.coord.lat;
+  lon = response.data.coord.lon;
+  console.log(response);
 }
 $(function () {
   let date = new Date();
@@ -286,6 +313,7 @@ $(function () {
   document.querySelector("#time").innerHTML = obj.time;
   units = updateUnits();
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Barcelona&units=${units}&appid=${apiKey}`;
+  // let cityFromLocationUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${units}&exclude=${exclude}&appid=${apiKey}`;
   axios.get(apiUrl).then(showWeatherSelectedCity);
   document.querySelector("#unit").addEventListener("click", (event) => {
     transformation2do = document.querySelector("#unit").innerHTML;
@@ -297,5 +325,5 @@ $(function () {
       navigator.geolocation.getCurrentPosition(getCurrentPosition);
       document.querySelector("#city").value = "";
     });
-  displayForecast();
+  // displayForecast();
 });
