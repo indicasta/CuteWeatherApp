@@ -98,9 +98,8 @@ h1.text-properties {
   font-weight: 700;
   white-space: nowrap;
 }
-.forecast-temp-max i {
-  font-size: 24px;
-}
+
+.forecast-temp-max i,
 .forecast-temp-min i {
   font-size: 24px;
 }
