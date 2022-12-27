@@ -250,7 +250,6 @@ function formatDate(date) {
   return formattedDate;
 }
 function displayForecast(response) {
-  console.log(response);
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastElement2 = document.querySelector("#forecast2");
@@ -260,7 +259,6 @@ function displayForecast(response) {
   forecast.forEach(function (forecastDay, index) {
     weatherCond = updateWeatherConditions(forecastDay.weather);
     if (index >= 1 && index <= 3) {
-      console.log(forecastDay.weather);
       forecastHTML =
         forecastHTML +
         `
@@ -282,7 +280,6 @@ function displayForecast(response) {
       </div>
   `;
     } else if (3 < index && index < 7) {
-      console.log(forecastDay.weather);
       forecastHTML2 =
         forecastHTML2 +
         `
@@ -311,7 +308,6 @@ function displayForecast(response) {
 function getCoords(response) {
   lat = response.data.coord.lat;
   lon = response.data.coord.lon;
-  console.log(response);
 }
 $(function () {
   let date = new Date();
