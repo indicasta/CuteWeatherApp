@@ -91,10 +91,12 @@ h1.text-properties {
   white-space: nowrap;
 }
 .forecast-temp-max {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 700;
+  white-space: nowrap;
 }
-forecast-temp-min {
-  font-size: 10px;
-  font-size: 100;
+.forecast-temp-min {
+  font-size: 14px;
+  font-size: 900;
+  white-space: nowrap;
 }

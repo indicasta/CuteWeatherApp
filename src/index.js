@@ -56,6 +56,7 @@ function updateWeatherConditions(weather) {
   let currentWeather = weather[0];
   let icon = "";
   let description = "";
+  let main = "";
   // <i class="fa-solid fa-moon"></i>
   // <i class="fa-solid fa-smog"></i>
   // <i class="fa-solid fa-snowflake"></i>
@@ -66,6 +67,8 @@ function updateWeatherConditions(weather) {
   //<i class="fa-solid fa-star-and-crescent"></i>
   //<i class="fa-solid fa-umbrella"></i>
   description = `${currentWeather.description}`;
+  main = `${currentWeather.main}`;
+  main = main.toUpperCase();
   description = description.toUpperCase();
   if (200 <= currentWeather.id && currentWeather.id <= 232) {
     icon = `<i class="fa-solid fa-cloud-bolt"></i>`;
@@ -102,10 +105,12 @@ function updateWeatherConditions(weather) {
   } else if (currentWeather.id === 803 || currentWeather.id === 804) {
     icon = `<i class="fa-solid fa-cloud"></i>`;
   }
-  return { icon: icon, description: description };
+  return { icon: icon, description: description, main: main };
 }
 function showWeatherSelectedCity(response) {
   temp = response.data.main.temp;
+  lat = response.data.coord.lat;
+  lon = response.data.coord.lon;
   tempfeelsLike = response.data.main.feels_like;
   let temp2Display = Math.round(temp);
   let tempfeelsLike2Display = Math.round(tempfeelsLike);
@@ -147,6 +152,8 @@ function showWeatherSelectedCity(response) {
   }
   writtenCity2Display = response.data.name;
   document.querySelector("h1").innerHTML = writtenCity2Display;
+  let cityFromLocationUrl2Forecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${units}&exclude=${exclude}&appid=${apiKey}`;
+  axios.get(cityFromLocationUrl2Forecast).then(displayForecast);
 }
 function updateCity() {
   writtenCity = document.getElementById("city").value;
@@ -258,7 +265,7 @@ function displayForecast(response) {
         forecastHTML +
         `
       <div class="col-2">
-        <div class="fw-bold" title=${weatherCond.description}>${formatDay(
+        <div class="fw-bold" title=${weatherCond.main}>${formatDay(
           forecastDay.dt
         )}</div>
         ${weatherCond.icon}
@@ -280,7 +287,7 @@ function displayForecast(response) {
         forecastHTML2 +
         `
       <div class="col-2">
-        <div class="fw-bold" title=${weatherCond.description}>${formatDay(
+        <div class="fw-bold" title=${weatherCond.main}>${formatDay(
           forecastDay.dt
         )}</div>
         ${weatherCond.icon}
@@ -316,7 +323,6 @@ $(function () {
   document.querySelector("#time").innerHTML = obj.time;
   units = updateUnits();
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Barcelona&units=${units}&appid=${apiKey}`;
-  // let cityFromLocationUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${units}&exclude=${exclude}&appid=${apiKey}`;
   axios.get(apiUrl).then(showWeatherSelectedCity);
   document.querySelector("#unit").addEventListener("click", (event) => {
     transformation2do = document.querySelector("#unit").innerHTML;
