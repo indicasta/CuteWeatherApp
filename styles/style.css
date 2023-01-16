@@ -2,12 +2,12 @@
   .wrapper {
     max-width: 100% !important;
     margin: 0 auto !important;
-    max-height: max-content !important;
+    padding: 10px 5px !important;
   }
   h1.text-properties {
     font-size: 22px !important;
     font-weight: 900 !important;
-    margin-top: 5px !important;
+    margin-top: 10px !important;
     padding-top: 5px !important;
   }
   .text-properties h4 {
@@ -30,7 +30,7 @@
     margin-bottom: 2px !important;
   }
   #condition i {
-    font-size: 16px !important;
+    font-size: 18px !important;
   }
   #thermo {
     font-size: 16px !important;
@@ -59,11 +59,13 @@
     font-size: 11px !important;
   }
   .current-location {
-    margin-top: 5px !important;
+    display: flex !important;
+    align-items: flex-start !important;
   }
-  .alert-city {
-    font-size: 12px !important;
-    max-width: 50% !important;
+  #error-notFound {
+    font-size: 8px !important;
+    margin: 1px 1px !important;
+    padding: 2px 2px !important;
   }
   .current {
     max-width: 300px !important;
@@ -87,16 +89,6 @@
     width: 16px !important;
     height: 16px !important;
   }
-  .alert-danger {
-    padding: 2px 2px !important;
-    max-width: fit-content !important;
-    font-size: 10px !important;
-    font-weight: bold !important;
-    display: flex !important;
-    align-items: center !important;
-    align-content: flex-start !important;
-    justify-self: flex-start !important;
-  }
   #current-weather {
     padding: 3px !important;
     margin: 0px !important;
@@ -104,8 +96,8 @@
   .forecast {
     font-size: 10px !important;
   }
-  .alert-city {
-    margin: 1px 2px !important;
+  .card-footer {
+    font-size: 12px !important;
   }
 }
 .wrapper {
@@ -227,9 +219,8 @@ h1.text-properties {
 .current-cond {
   margin: 15px 0 !important;
 }
-.alert-city {
+#error-notFound {
   max-width: fit-content;
-  padding: auto;
   align-items: center;
   margin-left: 8px;
 }
