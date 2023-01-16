@@ -32,15 +32,15 @@
   </head>
   <body>
     <div class="container">
-      <div class="card text-bg-dark wrapper">
+      <div class="card text-bg-dark wrapper p-1">
         <img
           src="img/pexels-kai-pilger-1341279.jpg"
-          class="card-img opacity-75"
+          class="card-img opacity-75 img-fluid"
           alt="weather Forecast"
         />
         <div class="card-img-overlay">
-          <div class="row align-items-start">
-            <div class="col-4 opacity-25 align-self-start me-3">
+          <div class="row justify-content-start">
+            <div class="col-md-4 col-sm-4 opacity-25 align-self-start me-5">
               <input
                 type="text"
                 class="form-control"
@@ -57,76 +57,72 @@
                 onclick="onButtonPress()"
               />
             </div>
-            <div class="col-2 mt-0">
-              <button
-                type="button"
-                class="btn btn-dark"
-                id="current-weather"
-                title="Current Location"
+            <div class="row current-location">
+              <div class="col-md-1 col-sm-1 my-2 justify-content-start">
+                <button
+                  type="button"
+                  class="btn btn-dark"
+                  id="current-weather"
+                  title="Current Location"
+                >
+                  📍
+                </button>
+              </div>
+              <div
+                class="alert alert-danger fade in hide d-flex col-md-4 col-lg-6 my-2 py-1 alert-city"
+                role="alert"
+                style="
+                  background-image: linear-gradient(
+                    to right,
+                    #f13863 0%,
+                    #f6d365 33%,
+                    #fda085 66%,
+                    #1e190a 100%
+                  );
+                "
+                id="error-notFound"
               >
-                📍
-              </button>
-            </div>
-            <div
-              class="alert alert-danger fade in hide d-flex align-items-center col-6 my-2 py-2"
-              role="alert"
-              style="
-                background-image: linear-gradient(
-                  to right,
-                  #f13863 0%,
-                  #f6d365 33%,
-                  #fda085 66%,
-                  #1e190a 100%
-                );
-              "
-              id="error-notFound"
-            >
-              <svg
-                class="bi flex-shrink-0 me-2"
-                width="24"
-                height="24"
-                role="img"
-                aria-label="Danger:"
-              >
-                <use xlink:href="#exclamation-triangle-fill" />
-              </svg>
-              <div>Uh-oh! City not found!😲</div>
+                <svg
+                  class="bi flex-shrink-0 me-1"
+                  width="20"
+                  height="24"
+                  role="img"
+                  aria-label="Danger:"
+                >
+                  <use xlink:href="#exclamation-triangle-fill" />
+                </svg>
+                <div>Uh-oh! City not found!😲</div>
+              </div>
             </div>
           </div>
-          <div class="row">
+          <div
+            class="col-sm-6 col-md-10 col-lg-10 position-absolute top-50 end-0 my-4 translate-middle-y align-self-end current"
+          >
+            <h1 class="selected-city card-title pe-2 text-properties"></h1>
             <div
-              class="col-10 position-absolute top-50 end-0 my-4 translate-middle-y"
-              style="max-width: 320px; margin-top: -5px !important"
+              class="card-body text-start text-properties"
+              style="padding-top: 0px"
             >
-              <h1 class="selected-city card-title pe-2 text-properties"></h1>
-              <div
-                class="card-body text-start text-properties"
-                style="padding-top: 0px"
-              >
-                <div class="text-center">
-                  <h4 id="day" class="text-properties"></h4>
-                  <h4 id="date" class="text-properties"></h4>
-                  <h5>
-                    Last Updated:
-                    <span id="time" class="text-properties"></span>
-                  </h5>
-                </div>
-                <div class="text-center">
-                  <p class="card-text fw-bold">
-                    <i
-                      class="fa-solid fa-temperature-three-quarters"
-                      id="thermo"
-                    ></i>
-                    <span class="temperature"></span
-                    ><span class="units">°C|</span
-                    ><button class="units" id="unit">°F</button>
-                  </p>
-                  <p
-                    id="condition"
-                    class="fw-bold"
-                    style="margin-top: -18px"
-                  ></p>
-                </div>
+              <div class="text-center current-date">
+                <h4 id="day" class="text-properties"></h4>
+                <h4 id="date" class="text-properties"></h4>
+                <h5>
+                  Last Updated:
+                  <span id="time" class="text-properties"></span>
+                </h5>
+              </div>
+              <div class="text-center current-forecast">
+                <p class="card-text fw-bold">
+                  <i
+                    class="fa-solid fa-temperature-three-quarters"
+                    id="thermo"
+                  ></i>
+                  <span class="temperature"></span><span class="units">°C|</span
+                  ><button class="units" id="unit">°F</button>
+                </p>
+                <p id="condition" class="fw-bold" style="margin-top: -18px"></p>
+              </div>
+              <div class="current-cond">
                 <div class="row justify-content-around">
                   <p class="fw-bold feelsLike col-7" id="feelsLike">
                     <i class="fa-solid fa-temperature-low"></i>FEELS LIKE:
@@ -147,8 +143,10 @@
               </div>
             </div>
           </div>
-          <div class="text-properties forecast" id="forecast"></div>
-          <div class="text-properties forecast" id="forecast2"></div>
+          <div class="row justify-content-start">
+            <div class="text-properties forecast" id="forecast"></div>
+            <div class="text-properties forecast" id="forecast2"></div>
+          </div>
 
           <!-- <div
             class="btn-group mb-5 col-6 position-absolute bottom-0 start-0"
